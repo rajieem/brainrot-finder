@@ -1,1 +1,41 @@
+-- GUI + Brainrot Server-Hopping Scanner in Roblox
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local ExecuteButton = Instance.new("TextButton")
 
+-- Create GUI
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Name = "BrainrotScannerGUI"
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+Frame.Size = UDim2.new(0, 300, 0, 150)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -75)
+
+Title.Parent = Frame
+Title.Text = "Brainrot Scanner"
+Title.Size = UDim2.new(1, 0, 0.3, 0)
+Title.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Font = Enum.Font.SourceSansBold
+Title.TextSize = 24
+
+ExecuteButton.Parent = Frame
+ExecuteButton.Text = "Execute Script"
+ExecuteButton.Size = UDim2.new(0.6, 0, 0.25, 0)
+ExecuteButton.Position = UDim2.new(0.2, 0, 0.5, 0)
+ExecuteButton.BackgroundColor3 = Color3.fromRGB(80, 150, 80)
+ExecuteButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+ExecuteButton.Font = Enum.Font.SourceSansBold
+ExecuteButton.TextSize = 18
+
+-- Avoid duplicating GUIs
+if game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("BrainrotScannerGUI") then
+    game.Players.LocalPlayer:FindFirstChild("PlayerGui"):FindFirstChild("BrainrotScannerGUI"):Destroy()
+end
+
+-- Add script functionality to the button
+ExecuteButton.MouseButton1Click:Connect(function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ajskskakai/brainrot-finder/main/Finder.lua"))()
+end)
